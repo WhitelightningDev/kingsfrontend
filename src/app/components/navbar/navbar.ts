@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
@@ -29,7 +29,7 @@ import { Breadcrumb } from '../breadcrumb/breadcrumb';
   ],
   templateUrl: './navbar.html',
 })
-export class Navbar {
+export class Navbar implements AfterViewInit {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
 
   navItems = [
@@ -42,15 +42,27 @@ export class Navbar {
   drawerMode: MatDrawerMode = 'side';
   drawerOpened = true;
 
-  constructor(private observer: BreakpointObserver) {
+  constructor(private observer: BreakpointObserver) {}
+
+  ngAfterViewInit(): void {
     this.observer.observe([Breakpoints.Handset]).subscribe((result) => {
-      this.drawerMode = result.matches ? 'over' : 'side';
-      this.drawerOpened = !result.matches;
+      setTimeout(() => {
+        this.drawerMode = result.matches ? 'over' : 'side';
+        this.drawerOpened = !result.matches;
+
+        if (this.sidenav) {
+          if (this.drawerOpened) {
+            this.sidenav.open();
+          } else {
+            this.sidenav.close();
+          }
+        }
+      });
     });
   }
 
   toggleDrawer() {
-    if (this.drawerMode === 'over') {
+    if (this.drawerMode === 'over' && this.sidenav) {
       this.sidenav.toggle();
     }
   }
