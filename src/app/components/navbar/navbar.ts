@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { NgFor } from '@angular/common';
 
-// Angular Material Modules
-import { MatSidenavModule } from '@angular/material/sidenav';
+import {
+  MatSidenavModule,
+  MatDrawerMode,
+} from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
-// Breadcrumb Component
 import { Breadcrumb } from '../breadcrumb/breadcrumb';
 
 @Component({
@@ -26,11 +28,30 @@ import { Breadcrumb } from '../breadcrumb/breadcrumb';
     Breadcrumb,
   ],
   templateUrl: './navbar.html',
-  styleUrls: ['./navbar.css'], // ✅ Corrected this
 })
 export class Navbar {
+  @ViewChild(MatSidenav) sidenav!: MatSidenav;
+
   navItems = [
-    { label: 'Home', route: '/' },
-    { label: 'Book a Wash', route: '/make-a-booking' },
+    { label: 'Home', route: '/', icon: 'home' },
+    { label: 'Book a Wash', route: '/make-a-booking', icon: 'event' },
+    { label: 'Prices', route: '/prices', icon: 'attach_money' },
+    { label: 'About Us', route: '/about-us', icon: 'info' },
   ];
+
+  drawerMode: MatDrawerMode = 'side';
+  drawerOpened = true;
+
+  constructor(private observer: BreakpointObserver) {
+    this.observer.observe([Breakpoints.Handset]).subscribe((result) => {
+      this.drawerMode = result.matches ? 'over' : 'side';
+      this.drawerOpened = !result.matches;
+    });
+  }
+
+  toggleDrawer() {
+    if (this.drawerMode === 'over') {
+      this.sidenav.toggle();
+    }
+  }
 }
