@@ -107,6 +107,6 @@ export class BookWash {
       amount: this.total,
     };
     console.log('BOOKING_PAYLOAD', payload);
-    this.router.navigateByUrl('/Book-a-wash/confirm');
+    this.router.navigate(['/Book-a-wash/details-form'], { state: payload });
   }
 }
