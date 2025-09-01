@@ -1,67 +1,127 @@
-<section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-  <header class="mb-8">
-    <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Book your wash</h1>
-    <p class="mt-1 text-gray-600">Category: <span class="font-medium text-gray-900 uppercase">{{ type() }}</span></p>
-  </header>
+<!-- Page wrapper with soft background -->
+<div class="min-h-screen bg-gray-50">
+  <!-- Top container -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Header -->
+    <header class="mb-8">
+      <div class="flex items-center justify-between gap-4">
+        <a [routerLink]="['/Book-a-wash']" class="inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800">
+          <svg class="h-4 w-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to packages
+        </a>
+        <div class="hidden sm:flex items-center text-xs text-gray-500 gap-2">
+          <span class="px-2.5 py-1 rounded-full bg-white border">1. Select</span>
+          <span class="h-px w-6 bg-gray-300"></span>
+          <span class="px-2.5 py-1 rounded-full bg-gray-100">2. Details</span>
+          <span class="h-px w-6 bg-gray-300"></span>
+          <span class="px-2.5 py-1 rounded-full bg-gray-100">3. Confirm</span>
+        </div>
+      </div>
 
-  <!-- Options -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-    <ng-container *ngFor="let opt of optionsForType()">
-      <label class="border rounded-xl p-4 cursor-pointer hover:shadow-sm flex flex-col gap-1"
-             [class.border-indigo-500]="optionId() === opt.id">
-        <input
-          class="hidden"
-          type="radio"
-          name="option"
-          [value]="opt.id"
-          [checked]="optionId() === opt.id"
-          (change)="optionId.set(opt.id)"
-        />
-        <span class="text-base font-semibold text-gray-900">{{ opt.name }}</span>
-        <span class="text-sm text-gray-600">{{ opt.desc }}</span>
-        <span class="mt-2 text-sm text-gray-500">R {{ opt.price }}</span>
-      </label>
-    </ng-container>
-  </div>
+      <div class="mt-4 inline-flex items-center gap-2 rounded-full bg-indigo-50 text-indigo-700 px-3 py-1 text-xs font-semibold border border-indigo-200">
+        <span class="h-2 w-2 rounded-full bg-indigo-500"></span>
+        <span>Online Booking</span>
+      </div>
+      <h1 class="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">Book your wash</h1>
+      <p class="mt-1 text-gray-600">Category:
+        <span class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800 uppercase">
+          <span class="h-2 w-2 rounded-full bg-gray-400"></span>{{ type() }}
+        </span>
+      </p>
+    </header>
 
-  <!-- Add-ons -->
-  <div class="mt-8">
-    <h2 class="text-lg font-semibold text-gray-900">Add-ons</h2>
-    <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
-      <label *ngFor="let a of addOnCatalog" class="flex items-center gap-3 border rounded-xl p-3 hover:bg-gray-50">
-        <input type="checkbox"
-               [checked]="addOns().includes(a.id)"
-               (change)="toggleAddon(a.id, $any($event.target).checked)" />
-        <span class="text-sm text-gray-900">{{ a.label }}</span>
-        <span class="ml-auto text-sm text-gray-500">+ R {{ a.price }}</span>
-      </label>
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+      <!-- Left: Options + Add-ons + Schedule -->
+      <div class="lg:col-span-2 space-y-8">
+        <!-- Card: Options -->
+        <section class="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">Choose a package</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <ng-container *ngFor="let opt of optionsForType()">
+              <label class="group relative border rounded-2xl p-5 cursor-pointer shadow-sm bg-white hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-indigo-500"
+                     [ngClass]="{ 'ring-2 ring-indigo-500': optionId() === opt.id }">
+                <input class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" type="radio" name="option" [value]="opt.id"
+                       [checked]="optionId() === opt.id" (change)="optionId.set(opt.id)" aria-label="Select {{ opt.name }}" />
+                <div class="flex items-start gap-4">
+                  <div class="mt-1">
+                    <span class="inline-flex items-center justify-center h-5 w-5 rounded-full border"
+                          [ngClass]="{ 'bg-indigo-600 border-indigo-600': optionId() === opt.id }"></span>
+                  </div>
+                  <div class="flex-1">
+                    <div class="flex items-center justify-between gap-4">
+                      <h3 class="text-base font-semibold text-gray-900">{{ opt.name }}</h3>
+                      <span class="text-sm font-semibold text-gray-900">R {{ opt.price }}</span>
+                    </div>
+                    <p class="mt-1 text-sm text-gray-600">{{ opt.desc }}</p>
+                  </div>
+                </div>
+              </label>
+            </ng-container>
+          </div>
+        </section>
+
+        <!-- Card: Add-ons -->
+        <section class="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">Add-ons</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label *ngFor="let a of addOnCatalog" class="flex items-center gap-3 rounded-2xl border p-4 hover:bg-gray-50 transition">
+              <input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                     [checked]="addOns().includes(a.id)" (change)="toggleAddon(a.id, $any($event.target).checked)" />
+              <span class="text-sm text-gray-900">{{ a.label }}</span>
+              <span class="ml-auto text-sm text-gray-500">+ R {{ a.price }}</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Card: Schedule -->
+        <section class="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">Schedule</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-900 mb-1">Date</label>
+              <input type="date" class="w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                     [value]="date()" (input)="date.set($any($event.target).value)" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-900 mb-1">Time</label>
+              <input type="time" class="w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                     [value]="time()" (input)="time.set($any($event.target).value)" />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right: Summary Card -->
+      <aside class="lg:col-span-1">
+        <div class="sticky top-8 rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
+          <h3 class="text-base font-semibold text-gray-900">Summary</h3>
+          <dl class="mt-4 space-y-2 text-sm">
+            <div class="flex items-center justify-between">
+              <dt class="text-gray-600">Category</dt>
+              <dd class="text-gray-900 uppercase">{{ type() }}</dd>
+            </div>
+            <div class="flex items-center justify-between">
+              <dt class="text-gray-600">Base package</dt>
+              <dd class="text-gray-900">{{ optionId() || '—' }}</dd>
+            </div>
+            <div class="flex items-start justify-between">
+              <dt class="text-gray-600">Add-ons</dt>
+              <dd class="text-right text-gray-900">{{ addOns().length }} selected</dd>
+            </div>
+          </dl>
+          <div class="mt-4 border-t pt-4 flex items-center justify-between">
+            <p class="text-sm text-gray-600">Total</p>
+            <p class="text-2xl font-bold text-gray-900">R {{ total }}</p>
+          </div>
+          <button (click)="submit()" class="mt-6 w-full inline-flex items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-white text-sm font-semibold shadow hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            Continue
+          </button>
+          <p class="mt-3 text-[11px] text-gray-500">Prices may vary based on vehicle condition. You can confirm the final amount at the branch.</p>
+        </div>
+      </aside>
     </div>
-  </div>
-
-  <!-- Date/Time -->
-  <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-    <div>
-      <label class="block text-sm font-medium text-gray-900 mb-1">Date</label>
-      <input type="date" class="w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-indigo-500"
-             [value]="date()" (input)="date.set($any($event.target).value)" />
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-900 mb-1">Time</label>
-      <input type="time" class="w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-indigo-500"
-             [value]="time()" (input)="time.set($any($event.target).value)" />
-    </div>
-  </div>
-
-  <!-- Total + Submit -->
-  <div class="mt-8 flex items-center justify-between">
-    <p class="text-sm text-gray-600">Total</p>
-    <p class="text-2xl font-bold text-gray-900">R {{ total }}</p>
-  </div>
-
-  <div class="mt-5 flex justify-end">
-    <button (click)="submit()"
-            class="inline-flex items-center rounded-lg bg-indigo-600 px-6 py-3 text-white text-sm font-semibold hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-      Continue
-    </button>
-  </div>
-</section>
+  </section>
+</div>

@@ -21,7 +21,7 @@
       </ul>
       <div class="mt-5 flex items-center justify-between">
         <span class="text-sm text-gray-500">From <span class="font-semibold text-gray-900">R120</span></span>
-        <a href="/Book-a-wash?type=everyday" class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white text-sm font-semibold hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Book</a>
+        <a [routerLink]="['/Book-a-wash/details']" [queryParams]="{ type: 'everyday' }" class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white text-sm font-semibold hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Book</a>
       </div>
     </article>
 
@@ -39,7 +39,7 @@
       </ul>
       <div class="mt-5 flex items-center justify-between">
         <span class="text-sm text-gray-500">From <span class="font-semibold text-gray-900">R160</span></span>
-        <a href="/Book-a-wash?type=suv-bakkie" class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white text-sm font-semibold hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Book</a>
+        <a [routerLink]="['/Book-a-wash/details']" [queryParams]="{ type: 'suv-bakkie' }" class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white text-sm font-semibold hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Book</a>
       </div>
     </article>
 
@@ -56,7 +56,7 @@
       </ul>
       <div class="mt-5 flex items-center justify-between">
         <span class="text-sm text-gray-500">From <span class="font-semibold text-gray-900">R90</span></span>
-        <a href="/Book-a-wash?type=bike" class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white text-sm font-semibold hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Book</a>
+        <a [routerLink]="['/Book-a-wash/details']" [queryParams]="{ type: 'bike' }" class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white text-sm font-semibold hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Book</a>
       </div>
     </article>
 
@@ -74,7 +74,7 @@
       </ul>
       <div class="mt-5 flex items-center justify-between">
         <span class="text-sm text-gray-500">From <span class="font-semibold text-gray-900">R450</span></span>
-        <a href="/Book-a-wash?type=luxury" class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white text-sm font-semibold hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Book</a>
+        <a [routerLink]="['/Book-a-wash/details']" [queryParams]="{ type: 'luxury' }" class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white text-sm font-semibold hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Book</a>
       </div>
     </article>
   </div>
