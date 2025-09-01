@@ -50,6 +50,6 @@ export class ConfirmComponent {
     };
     console.log('CONFIRM_BOOKING', payload);
     // TODO: call your backend here
-    this.router.navigateByUrl('/'); // or navigate to a thank-you route
+    this.router.navigate(['/Book-a-wash/checkout'], { state: this.state() });
   }
 }

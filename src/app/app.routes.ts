@@ -4,6 +4,7 @@ import { BookingPage } from './pages/booking-page/booking-page';
 import { BookWash } from './pages/book-wash/book-wash';
 import { ConfirmComponent } from './pages/confirm/confirm';
 import { BookingDetailsComponent } from './pages/booking-details/booking-details';
+import { CheckoutComponent } from './pages/checkout/checkout';
 
 export const routes: Routes = [
   {
@@ -17,4 +18,5 @@ export const routes: Routes = [
     path: 'Book-a-wash/details', component: BookWash
   },
   { path: 'Book-a-wash/confirm', component: ConfirmComponent },
+   { path: 'Book-a-wash/checkout', component: CheckoutComponent },
 ];
