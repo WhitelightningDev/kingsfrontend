@@ -1,86 +1,115 @@
-<!-- Booking: Wash Types -->
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-  <header class="text-center mb-10">
-    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">Choose Your Wash</h1>
-    <p class="mt-2 text-gray-600">Select a category below to see options and book.</p>
-  </header>
+<!-- Booking: Wash Types (Premium) -->
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+  <!-- soft glow -->
+  <div class="pointer-events-none absolute inset-x-0 -top-24 h-64 bg-gradient-to-b from-indigo-200/40 via-fuchsia-100/30 to-transparent blur-2xl"></div>
 
-  <!-- Categories grid -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    <!-- Everyday Cars -->
-    <article class="rounded-2xl border border-gray-200 bg-white shadow-sm p-6 flex flex-col">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500"></div>
-        <h2 class="text-lg font-semibold text-gray-900">Everyday Cars</h2>
-      </div>
-      <ul class="text-sm text-gray-700 space-y-2 flex-1">
-        <li><span class="font-medium">Express Wash</span> — exterior rinse, foam, dry</li>
-        <li><span class="font-medium">Standard Wash</span> — exterior + wheels + windows</li>
-        <li><span class="font-medium">Full Wash</span> — interior vacuum + wipe-down</li>
-        <li><span class="font-medium">Deep Clean</span> — seats, mats, plastics detailed</li>
-      </ul>
-      <div class="mt-5 flex items-center justify-between">
-        <span class="text-sm text-gray-500">From <span class="font-semibold text-gray-900">R120</span></span>
-        <a [routerLink]="['/Book-a-wash/details']" [queryParams]="{ type: 'everyday' }" class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white text-sm font-semibold hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Book</a>
-      </div>
-    </article>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    <header class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">Choose Your Wash</h1>
+      <p class="mt-2 text-slate-600">Select a category below to see options and book.</p>
+    </header>
 
-    <!-- SUVs & Bakkies -->
-    <article class="rounded-2xl border border-gray-200 bg-white shadow-sm p-6 flex flex-col">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-500"></div>
-        <h2 class="text-lg font-semibold text-gray-900">SUVs &amp; Bakkies</h2>
-      </div>
-      <ul class="text-sm text-gray-700 space-y-2 flex-1">
-        <li><span class="font-medium">Express Wash</span> — exterior rinse, foam, dry</li>
-        <li><span class="font-medium">Standard Wash</span> — exterior + wheels + windows</li>
-        <li><span class="font-medium">Full Wash</span> — interior vacuum + wipe-down</li>
-        <li><span class="font-medium">Deep Clean</span> — seats, mats, plastics detailed</li>
-      </ul>
-      <div class="mt-5 flex items-center justify-between">
-        <span class="text-sm text-gray-500">From <span class="font-semibold text-gray-900">R160</span></span>
-        <a [routerLink]="['/Book-a-wash/details']" [queryParams]="{ type: 'suv-bakkie' }" class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white text-sm font-semibold hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Book</a>
-      </div>
-    </article>
+    <!-- Categories grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+      <!-- Everyday Cars -->
+      <article class="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white/80 p-6 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-lg">
+        <div class="flex items-center gap-3 mb-4">
+          <!-- Premium logo badge -->
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl ring-1 ring-inset ring-white/60 bg-gradient-to-br from-indigo-500 to-violet-500 shadow-sm">
+            <!-- Sedan SVG -->
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-7 w-7 fill-white/95">
+              <path d="M3 13c0-.6.4-1 1-1h1.2l2-3.3A3 3 0 0 1 9.6 7h3.8c.9 0 1.7.4 2.2 1.1l2.1 2.9H20a1 1 0 0 1 1 1v4.5c0 .3-.2.5-.5.5H20v1a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H7v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1H3.5c-.3 0-.5-.2-.5-.5V13Zm14.4-2-1.5-2a1 1 0 0 0-.8-.4H9.6a1 1 0 0 0-.9.5L7 11h10.4ZM7.5 15.5A1.5 1.5 0 1 0 7.5 12a1.5 1.5 0 0 0 0 3.5Zm9 0A1.5 1.5 0 1 0 16.5 12a1.5 1.5 0 0 0 0 3.5Z"/>
+            </svg>
+          </div>
+          <h2 class="text-lg font-semibold text-slate-900">Everyday Cars</h2>
+        </div>
+        <ul class="text-sm text-slate-700 space-y-2 min-h-[140px]">
+          <li><span class="font-medium">Express Wash</span> — exterior rinse, foam, dry</li>
+          <li><span class="font-medium">Standard Wash</span> — exterior + wheels + windows</li>
+          <li><span class="font-medium">Full Wash</span> — interior vacuum + wipe-down</li>
+          <li><span class="font-medium">Deep Clean</span> — seats, mats, plastics detailed</li>
+        </ul>
+        <div class="mt-5 flex items-center justify-between">
+          <span class="text-sm text-slate-500">From <span class="font-semibold text-slate-900">R120</span></span>
+          <a [routerLink]="['/Book-a-wash/details']" [queryParams]="{ type: 'everyday' }" class="inline-flex items-center rounded-xl bg-indigo-600 px-4 py-2 text-white text-sm font-semibold shadow shadow-indigo-600/20 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Book</a>
+        </div>
+      </article>
 
-    <!-- Motorbikes -->
-    <article class="rounded-2xl border border-gray-200 bg-white shadow-sm p-6 flex flex-col">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-sky-500 to-cyan-500"></div>
-        <h2 class="text-lg font-semibold text-gray-900">Motorbikes</h2>
-      </div>
-      <ul class="text-sm text-gray-700 space-y-2 flex-1">
-        <li><span class="font-medium">Express Rinse</span> — foam + dry</li>
-        <li><span class="font-medium">Standard Bike Wash</span> — frame, wheels, plastics</li>
-        <li><span class="font-medium">Detail + Protect</span> — degrease, dress plastics</li>
-      </ul>
-      <div class="mt-5 flex items-center justify-between">
-        <span class="text-sm text-gray-500">From <span class="font-semibold text-gray-900">R90</span></span>
-        <a [routerLink]="['/Book-a-wash/details']" [queryParams]="{ type: 'bike' }" class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white text-sm font-semibold hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Book</a>
-      </div>
-    </article>
+      <!-- SUVs & Bakkies -->
+      <article class="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white/80 p-6 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-lg">
+        <div class="flex items-center gap-3 mb-4">
+          <!-- Premium logo badge -->
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl ring-1 ring-inset ring-white/60 bg-gradient-to-br from-emerald-500 to-teal-500 shadow-sm">
+            <!-- SUV SVG -->
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-7 w-7 fill-white/95">
+              <path d="M4 12.5c0-.8.7-1.5 1.5-1.5h1.1l1.7-2.1c.5-.6 1.3-.9 2.1-.9h4.6c.7 0 1.4.3 1.9.8l2 2.2H20c.6 0 1 .4 1 1v4.9c0 .3-.2.6-.5.6H20v.9c0 .6-.4 1-1 1h-1c-.6 0-1-.4-1-1v-.9H7v.9c0 .6-.4 1-1 1H5c-.6 0-1-.4-1-1v-.9H3.5c-.3 0-.5-.3-.5-.6v-4.9Zm12.4-1.5-1.2-1.3a1 1 0 0 0-.7-.3h-4.6c-.3 0-.6.1-.8.4L7.9 11H16.4ZM8 16.5A1.5 1.5 0 1 0 8 13.5a1.5 1.5 0 0 0 0 3Zm8 0A1.5 1.5 0 1 0 16 13.5a1.5 1.5 0 0 0 0 3Z"/>
+            </svg>
+          </div>
+          <h2 class="text-lg font-semibold text-slate-900">SUVs &amp; Bakkies</h2>
+        </div>
+        <ul class="text-sm text-slate-700 space-y-2 min-h-[140px]">
+          <li><span class="font-medium">Express Wash</span> — exterior rinse, foam, dry</li>
+          <li><span class="font-medium">Standard Wash</span> — exterior + wheels + windows</li>
+          <li><span class="font-medium">Full Wash</span> — interior vacuum + wipe-down</li>
+          <li><span class="font-medium">Deep Clean</span> — seats, mats, plastics detailed</li>
+        </ul>
+        <div class="mt-5 flex items-center justify-between">
+          <span class="text-sm text-slate-500">From <span class="font-semibold text-slate-900">R160</span></span>
+          <a [routerLink]="['/Book-a-wash/details']" [queryParams]="{ type: 'suv-bakkie' }" class="inline-flex items-center rounded-xl bg-emerald-600 px-4 py-2 text-white text-sm font-semibold shadow shadow-emerald-600/20 hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">Book</a>
+        </div>
+      </article>
 
-    <!-- Luxury / Exotics -->
-    <article class="rounded-2xl border border-gray-200 bg-white shadow-sm p-6 flex flex-col">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500"></div>
-        <h2 class="text-lg font-semibold text-gray-900">Luxury / Exotics</h2>
-      </div>
-      <ul class="text-sm text-gray-700 space-y-2 flex-1">
-        <li><span class="font-medium">Touchless Hand Wash</span> — soft mitts, pH-neutral</li>
-        <li><span class="font-medium">Premium Detail</span> — interior + exterior finish</li>
-        <li><span class="font-medium">Paint Enhancement</span> — machine polish</li>
-        <li><span class="font-medium">Ceramic Coating</span> — long-term protection</li>
-      </ul>
-      <div class="mt-5 flex items-center justify-between">
-        <span class="text-sm text-gray-500">From <span class="font-semibold text-gray-900">R450</span></span>
-        <a [routerLink]="['/Book-a-wash/details']" [queryParams]="{ type: 'luxury' }" class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white text-sm font-semibold hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Book</a>
-      </div>
-    </article>
-  </div>
+      <!-- Motorbikes -->
+      <article class="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white/80 p-6 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-lg">
+        <div class="flex items-center gap-3 mb-4">
+          <!-- Premium logo badge -->
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl ring-1 ring-inset ring-white/60 bg-gradient-to-br from-sky-500 to-cyan-500 shadow-sm">
+            <!-- Bike SVG -->
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-7 w-7 fill-white/95">
+              <path d="M5.5 17A3.5 3.5 0 1 1 8 13.5 3.5 3.5 0 0 1 5.5 17Zm0-2A1.5 1.5 0 1 0 7 13.5 1.5 1.5 0 0 0 5.5 15ZM18.5 17A3.5 3.5 0 1 1 22 13.5 3.5 3.5 0 0 1 18.5 17Zm0-2A1.5 1.5 0 1 0 20 13.5 1.5 1.5 0 0 0 18.5 15ZM10 7h3a1 1 0 0 1 .9.6l1 2.4h2.1a1 1 0 0 1 0 2h-2.8a1 1 0 0 1-.9-.6l-.4-1H11l1.3 3.2a1 1 0 0 1-1.8.8L8.2 10H7a1 1 0 0 1 0-2h1.8l.7 1.6L10 7Z"/>
+            </svg>
+          </div>
+          <h2 class="text-lg font-semibold text-slate-900">Motorbikes</h2>
+        </div>
+        <ul class="text-sm text-slate-700 space-y-2 min-h-[140px]">
+          <li><span class="font-medium">Express Rinse</span> — foam + dry</li>
+          <li><span class="font-medium">Standard Bike Wash</span> — frame, wheels, plastics</li>
+          <li><span class="font-medium">Detail + Protect</span> — degrease, dress plastics</li>
+        </ul>
+        <div class="mt-5 flex items-center justify-between">
+          <span class="text-sm text-slate-500">From <span class="font-semibold text-slate-900">R90</span></span>
+          <a [routerLink]="['/Book-a-wash/details']" [queryParams]="{ type: 'bike' }" class="inline-flex items-center rounded-xl bg-sky-600 px-4 py-2 text-white text-sm font-semibold shadow shadow-sky-600/20 hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">Book</a>
+        </div>
+      </article>
 
-  <!-- CTA Note -->
-  <div class="mt-10 rounded-xl bg-indigo-50 border border-indigo-200 p-5 text-indigo-900">
-    <p class="text-sm">Prices are starting rates and may vary based on vehicle condition and add-ons (engine bay, pet hair removal, headlight restoration, etc.). You can select add-ons on the next step.</p>
+      <!-- Luxury / Exotics -->
+      <article class="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white/80 p-6 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-lg">
+        <div class="flex items-center gap-3 mb-4">
+          <!-- Premium logo badge -->
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl ring-1 ring-inset ring-white/60 bg-gradient-to-br from-rose-500 to-pink-500 shadow-sm">
+            <!-- Crown/diamond SVG -->
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-7 w-7 fill-white/95">
+              <path d="M3 9.5 7.2 12 10 8l2 3 3-4 2.8 4L21 9.5V18c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1V9.5Zm2 1.9V17h14v-5.6l-1.4 1.1a1 1 0 0 1-1.4-.2L14 9.9l-2 2.7a1 1 0 0 1-1.6 0l-1.6-2.1-2.1 2a1 1 0 0 1-1.3 0L5 11.4Z"/>
+            </svg>
+          </div>
+          <h2 class="text-lg font-semibold text-slate-900">Luxury / Exotics</h2>
+        </div>
+        <ul class="text-sm text-slate-700 space-y-2 min-h-[140px]">
+          <li><span class="font-medium">Touchless Hand Wash</span> — soft mitts, pH‑neutral</li>
+          <li><span class="font-medium">Premium Detail</span> — interior + exterior finish</li>
+          <li><span class="font-medium">Paint Enhancement</span> — machine polish</li>
+          <li><span class="font-medium">Ceramic Coating</span> — long‑term protection</li>
+        </ul>
+        <div class="mt-5 flex items-center justify-between">
+          <span class="text-sm text-slate-500">From <span class="font-semibold text-slate-900">R450</span></span>
+          <a [routerLink]="['/Book-a-wash/details']" [queryParams]="{ type: 'luxury' }" class="inline-flex items-center rounded-xl bg-rose-600 px-4 py-2 text-white text-sm font-semibold shadow shadow-rose-600/20 hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">Book</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- CTA Note -->
+    <div class="mt-10 rounded-2xl border border-indigo-200/70 bg-indigo-50/70 p-5 text-indigo-900 shadow-sm">
+      <p class="text-sm">Prices are starting rates and may vary based on vehicle condition and add‑ons (engine bay, pet hair removal, headlight restoration, etc.). You can select add‑ons on the next step.</p>
+    </div>
   </div>
 </section>
