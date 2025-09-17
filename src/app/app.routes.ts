@@ -5,8 +5,12 @@ import { BookWash } from './pages/book-wash/book-wash';
 import { ConfirmComponent } from './pages/confirm/confirm';
 import { BookingDetailsComponent } from './pages/booking-details/booking-details';
 import { CheckoutComponent } from './pages/checkout/checkout';
+import { Packages } from './pages/packages/packages';
 
 export const routes: Routes = [
+  {
+    path: 'packages', component: Packages
+  },
   {
     path: '', component: Homepage
   },

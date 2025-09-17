@@ -2,5 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  background-color: #000; /* Make entire site background black */
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Force page backgrounds to black across views */
+body.force-dark {
+  background-color: #000;
+}
+
+/* Common page wrappers use Tailwind gradient-to-white; override to solid black */
+.force-dark .bg-gradient-to-b.from-slate-50.to-white {
+  background-color: #000 !important;
+  background-image: none !important;
+}
+
+/* Sections explicitly set to white (full-width sections) -> make black */
+.force-dark section.bg-white,
+.force-dark section.relative.bg-white {
+  background-color: #000 !important;
+}
+
+/* Optional: dim decorative gradient glows if present */
+.force-dark .pointer-events-none.bg-gradient-to-b {
+  opacity: 0.0 !important;
+}

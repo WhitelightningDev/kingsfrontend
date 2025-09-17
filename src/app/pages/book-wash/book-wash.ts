@@ -64,10 +64,11 @@ export class BookWash {
   };
 
   addOnCatalog: AddOn[] = [
-    { id: 'engine', label: 'Engine bay clean', price: 150 },
-    { id: 'pet', label: 'Pet hair removal', price: 120 },
-    { id: 'headlight', label: 'Headlight restoration', price: 250 },
-    { id: 'odor', label: 'Odor neutralizer', price: 90 },
+    { id: 'interior', label: 'Interior Cleans Only – Vacuum, air vents, dashboard shine, door panels', price: 100 },
+    { id: 'leather', label: 'Leather Clean – Nourish & protect leather surfaces', price: 50 },
+    { id: 'ceramic', label: 'Ceramic Infused Spray – Hydrophobic shine & protection', price: 150 },
+    { id: 'headlight', label: 'Headlight Restoration – Restores clarity to headlights', price: 200 },
+    { id: 'bodygloss', label: 'Body Gloss – Enhances depth & glossy finish', price: 100 },
   ];
 
   constructor(private route: ActivatedRoute, private router: Router) {
