@@ -30,6 +30,6 @@ body.force-dark {
 }
 
 /* Optional: dim decorative gradient glows if present */
-.force-dark .pointer-events-none.bg-gradient-to-b {
+.force-dark .pointer-events-none.bg-gradient-to-b:not(.home-glow) {
   opacity: 0.0 !important;
 }
