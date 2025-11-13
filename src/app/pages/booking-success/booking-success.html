@@ -1,0 +1,34 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-900 to-black px-4">
+  <div class="relative max-w-md w-full rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl shadow-indigo-500/20 backdrop-blur text-center">
+    <div class="pointer-events-none absolute inset-x-6 -top-3 h-6 rounded-full bg-gradient-to-b from-white/20 to-transparent"></div>
+
+    <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/10 ring-2 ring-emerald-400/40">
+      <svg viewBox="0 0 24 24" class="h-7 w-7 text-emerald-400" aria-hidden="true">
+        <path fill="currentColor" d="M9.5 16.6 5.4 12.5l1.4-1.4 2.7 2.7 7.7-7.7 1.4 1.4-9.1 9.1Z" />
+      </svg>
+    </div>
+
+    <h1 class="text-2xl font-semibold text-white mb-2">
+      {{ error() ? 'Something went wrong' : 'Booking confirmed' }}
+    </h1>
+
+    <p class="text-sm text-slate-300 mb-4" *ngIf="!error()">
+      {{ message() }}
+    </p>
+    <p class="text-sm text-rose-300 mb-4" *ngIf="error()">
+      {{ error() }}
+    </p>
+
+    <div *ngIf="bookingId()" class="mb-4 text-xs text-slate-400">
+      Reference: <span class="font-mono">{{ bookingId() }}</span>
+    </div>
+
+    <a
+      routerLink="/"
+      class="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-600/30 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+    >
+      Back to home
+    </a>
+  </div>
+</div>
+

@@ -2,22 +2,8 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-
-// Types
-export type WashType = 'everyday' | 'suv-bakkie' | 'bike' | 'luxury';
-
-export interface Option {
-  id: string;
-  name: string;
-  desc: string;
-  price: number; // ZAR
-}
-
-export interface AddOn {
-  id: string;
-  label: string;
-  price: number; // ZAR
-}
+import { ADD_ON_CATALOG, OPTIONS_MAP, Option, AddOn, WashType } from '../../booking-catalog';
+import { BookingApiService } from '../../services/booking-api.service';
 
 @Component({
   selector: 'app-book-wash',
@@ -36,42 +22,20 @@ export class BookWash {
   date = signal<string>('');
   time = signal<string>('');
 
+  // Schedule availability
+  availableSlots = signal<string[]>([]);
+  slotsLoading = signal<boolean>(false);
+
   // Catalogs per type
-  optionsMap: Record<WashType, Option[]> = {
-    everyday: [
-      { id: 'express', name: 'Express Wash', desc: 'Exterior rinse, foam, dry', price: 120 },
-      { id: 'standard', name: 'Standard Wash', desc: 'Exterior + wheels + windows', price: 150 },
-      { id: 'full', name: 'Full Wash', desc: 'Interior vacuum + wipe-down', price: 220 },
-      { id: 'deep', name: 'Deep Clean', desc: 'Seats, mats, plastics detailed', price: 320 },
-    ],
-    'suv-bakkie': [
-      { id: 'express', name: 'Express Wash', desc: 'Exterior rinse, foam, dry', price: 160 },
-      { id: 'standard', name: 'Standard Wash', desc: 'Exterior + wheels + windows', price: 190 },
-      { id: 'full', name: 'Full Wash', desc: 'Interior vacuum + wipe-down', price: 280 },
-      { id: 'deep', name: 'Deep Clean', desc: 'Seats, mats, plastics detailed', price: 380 },
-    ],
-    bike: [
-      { id: 'express', name: 'Express Rinse', desc: 'Foam + dry', price: 90 },
-      { id: 'standard', name: 'Standard Bike Wash', desc: 'Frame, wheels, plastics', price: 120 },
-      { id: 'detail', name: 'Detail + Protect', desc: 'Degrease, dress plastics', price: 200 },
-    ],
-    luxury: [
-      { id: 'touchless', name: 'Touchless Hand Wash', desc: 'Soft mitts, pH-neutral', price: 450 },
-      { id: 'premium', name: 'Premium Detail', desc: 'Interior + exterior finish', price: 950 },
-      { id: 'enhance', name: 'Paint Enhancement', desc: 'Machine polish', price: 2200 },
-      { id: 'ceramic', name: 'Ceramic Coating', desc: 'Long-term protection', price: 5500 },
-    ],
-  };
+  optionsMap: Record<WashType, Option[]> = OPTIONS_MAP;
 
-  addOnCatalog: AddOn[] = [
-    { id: 'interior', label: 'Interior Cleans Only – Vacuum, air vents, dashboard shine, door panels', price: 100 },
-    { id: 'leather', label: 'Leather Clean – Nourish & protect leather surfaces', price: 50 },
-    { id: 'ceramic', label: 'Ceramic Infused Spray – Hydrophobic shine & protection', price: 150 },
-    { id: 'headlight', label: 'Headlight Restoration – Restores clarity to headlights', price: 200 },
-    { id: 'bodygloss', label: 'Body Gloss – Enhances depth & glossy finish', price: 100 },
-  ];
+  addOnCatalog: AddOn[] = ADD_ON_CATALOG;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private bookingApi: BookingApiService,
+  ) {
     const qp = this.route.snapshot.queryParamMap.get('type') as WashType | null;
     if (qp && ['everyday', 'suv-bakkie', 'bike', 'luxury'].includes(qp)) {
       this.type.set(qp);
@@ -98,10 +62,42 @@ export class BookWash {
     return base + extras;
   }
 
+  onDateChange(value: string) {
+    this.date.set(value);
+    this.time.set('');
+
+    if (!value) {
+      this.availableSlots.set([]);
+      return;
+    }
+
+    this.slotsLoading.set(true);
+    this.bookingApi.getAvailableSlots(value).subscribe({
+      next: (slots) => {
+        this.availableSlots.set(slots || []);
+        this.time.set('');
+      },
+      error: () => {
+        this.availableSlots.set([]);
+        this.time.set('');
+        alert('Error fetching available slots. Please try again.');
+      },
+      complete: () => {
+        this.slotsLoading.set(false);
+      },
+    });
+  }
+
   submit() {
+    const selectedOption = this.optionsForType().find(o => o.id === this.optionId());
+    const selectedAddOns = this.addOnCatalog.filter(a => this.addOns().includes(a.id));
+
     const payload = {
       type: this.type(),
       option: this.optionId(),
+      optionLabel: selectedOption?.name ?? this.optionId(),
+      optionPrice: selectedOption?.price ?? 0,
+      addOnDetails: selectedAddOns,
       addOns: this.addOns(),
       date: this.date(),
       time: this.time(),

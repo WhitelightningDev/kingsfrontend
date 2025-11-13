@@ -16,6 +16,8 @@ export class BookingDetailsComponent {
   phone = signal('');
   email = signal('');
   notes = signal('');
+   vehicle = signal('');
+   address = signal('');
 
   constructor(private router: Router) {
     const nav = this.router.getCurrentNavigation();
@@ -29,7 +31,9 @@ export class BookingDetailsComponent {
       fullName: this.fullName(),
       phone: this.phone(),
       email: this.email(),
-      notes: this.notes()
+      notes: this.notes(),
+      vehicle: this.vehicle(),
+      address: this.address(),
     };
     this.router.navigate(['/Book-a-wash/confirm'], { state: payload });
   }

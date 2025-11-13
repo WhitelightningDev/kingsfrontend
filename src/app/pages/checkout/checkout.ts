@@ -2,6 +2,7 @@ import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { BookingApiService } from '../../services/booking-api.service';
 
 @Component({
   selector: 'app-checkout',
@@ -19,7 +20,10 @@ export class CheckoutComponent {
 
   total = computed(() => this.state()?.amount ?? 0);
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private bookingApi: BookingApiService,
+  ) {
     const nav = this.router.getCurrentNavigation();
     const incoming = nav?.extras?.state ?? (typeof history !== 'undefined' ? history.state : null);
     this.state.set(incoming);
@@ -37,12 +41,25 @@ export class CheckoutComponent {
       ...this.state(),
       payment: {
         method: this.paymentMethod(),
-        paid: false, // hook up real payment later
+        paid: false,
       },
     };
 
     console.log('CHECKOUT_SUBMIT', payload);
-    // TODO: call your API here, then route to a thank-you page
-    this.router.navigateByUrl('/');
+
+    this.bookingApi.book(payload).subscribe({
+      next: (res) => {
+        if (payload.payment.method === 'card' && res?.redirectUrl) {
+          window.location.href = res.redirectUrl;
+          return;
+        }
+
+        this.router.navigateByUrl('/');
+      },
+      error: (err) => {
+        console.error('Booking failed', err);
+        alert('Booking failed. Please try again.');
+      },
+    });
   }
 }

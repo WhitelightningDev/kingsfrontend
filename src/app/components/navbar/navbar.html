@@ -1,5 +1,5 @@
 
-<nav class="bg-gray-900 text-white">
+<nav class="relative z-50 bg-gray-900 text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Logo + Brand -->
@@ -12,17 +12,28 @@
       <div class="hidden md:flex items-center space-x-6">
         <a href="/" class="text-gray-300 hover:text-white font-medium">Home</a>
         <a href="/Book-a-wash" class="text-gray-300 hover:text-white font-medium">Book a wash</a>
-        <a href="#" class="text-gray-300 hover:text-white font-medium">Products</a>
-        <div class="relative group">
-          <button class="flex items-center text-gray-300 hover:text-white font-medium focus:outline-none">
+        <!-- <a href="#" class="text-gray-300 hover:text-white font-medium">Products</a> -->
+        <div class="relative">
+          <button
+            class="flex items-center text-gray-300 hover:text-white font-medium focus:outline-none"
+            (click)="toggleOtherMenu()"
+            [attr.aria-expanded]="isOtherMenuOpen"
+          >
             Other
             <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
           </button>
-          <ul class="absolute hidden group-hover:block bg-white text-gray-800 rounded-md mt-2 w-40 shadow-lg">
-            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">FAQ's</a></li>
-            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Gallery</a></li>
+          <ul
+            class="absolute z-50 bg-white text-gray-800 rounded-md mt-2 w-40 shadow-lg"
+            [class.hidden]="!isOtherMenuOpen"
+          >
+            <li>
+              <a href="/faq" class="block px-4 py-2 hover:bg-gray-100">FAQ's</a>
+            </li>
+            <li>
+              <a href="/gallery" class="block px-4 py-2 hover:bg-gray-100">Gallery</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -47,7 +58,7 @@
   <div id="mobile-menu" class="md:hidden px-2 pt-2 pb-3 space-y-1 bg-gray-800" [class.hidden]="!isMobileMenuOpen">
     <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Home</a>
     <a href="/Book-a-wash" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Book a wash</a>
-    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Products</a>
+    <!-- <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Products</a> -->
     <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">FAQ's</a>
     <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Gallery</a>
   </div>
