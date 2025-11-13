@@ -1,36 +1,65 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Fifth navbar example">
-  <div class="container-fluid">
-    <a class="navbar-brand d-flex align-items-center" href="#">
-      <img src="/kingslogo.JPG" alt="Logo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 10px; margin-right: 10px;">
-      Kiings VIP Car Wash
-    </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="relative z-50 bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo + Brand -->
+      <a href="#" class="flex items-center space-x-2">
+        <img src="/kingslogo.JPG" alt="Logo" class="w-12 h-12 object-cover rounded-lg" />
+        <span class="text-lg font-bold">Kiings VIP Car Wash</span>
+      </a>
 
-    <div class="collapse navbar-collapse" id="navbarsExample05">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Book a wash</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " aria-disabled="true">Products</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Other</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">FAQ's</a></li>
-            <li><a class="dropdown-item" href="#">Gallary</a></li>
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="/" class="text-gray-300 hover:text-white font-medium">Home</a>
+        <a href="/Book-a-wash" class="text-gray-300 hover:text-white font-medium">Book a wash</a>
+        <!-- <a href="#" class="text-gray-300 hover:text-white font-medium">Products</a> -->
+        <div class="relative">
+          <button
+            class="flex items-center text-gray-300 hover:text-white font-medium focus:outline-none"
+            (click)="toggleOtherMenu()"
+            [attr.aria-expanded]="isOtherMenuOpen"
+          >
+            Other
+            <svg class="ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <ul
+            class="absolute z-50 bg-white text-gray-800 rounded-md mt-2 w-40 shadow-lg"
+            [class.hidden]="!isOtherMenuOpen"
+          >
+            <li>
+              <a href="/faq" class="block px-4 py-2 hover:bg-gray-100">FAQ's</a>
+            </li>
+            <li>
+              <a href="/gallery" class="block px-4 py-2 hover:bg-gray-100">Gallery</a>
+            </li>
           </ul>
-        </li>
-      </ul>
-      <form class="d-flex mt-2 mt-lg-0" role="search">
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-      </form>
+        </div>
+      </div>
+
+      <!-- Search -->
+      <div class="hidden md:flex">
+        <input type="search" placeholder="Search" class="px-3 py-2 rounded-md text-sm bg-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden flex items-center">
+        <button id="mobile-menu-button" (click)="toggleMobileMenu()" [attr.aria-expanded]="isMobileMenuOpen" aria-controls="mobile-menu" class="text-gray-300 hover:text-white focus:outline-none">
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
     </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden px-2 pt-2 pb-3 space-y-1 bg-gray-800" [class.hidden]="!isMobileMenuOpen">
+    <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Home</a>
+    <a href="/Book-a-wash" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Book a wash</a>
+    <!-- <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Products</a> -->
+    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">FAQ's</a>
+    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Gallery</a>
   </div>
 </nav>

@@ -1,0 +1,153 @@
+<!-- Page wrapper with premium dark background -->
+<div class="min-h-screen relative overflow-hidden bg-black">
+  <!-- Subtle ambient glow -->
+  <div class="pointer-events-none home-glow absolute inset-x-0 -top-24 h-64 bg-gradient-to-b from-indigo-500/20 via-fuchsia-500/10 to-transparent blur-3xl"></div>
+
+  <!-- Top container -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <!-- Header -->
+    <header class="mb-8 sm:mb-10">
+      <div class="flex items-center justify-between gap-4">
+        <a [routerLink]="['/Book-a-wash']" class="inline-flex items-center text-sm font-medium text-indigo-300 hover:text-indigo-200">
+          <svg class="h-4 w-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to packages
+        </a>
+        <div class="hidden sm:flex items-center text-xs text-slate-400 gap-2">
+          <span class="px-2.5 py-1 rounded-full bg-indigo-600 text-white">1. Select</span>
+          <span class="h-px w-6 bg-white/10"></span>
+          <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10">2. Details</span>
+          <span class="h-px w-6 bg-white/10"></span>
+          <span class="px-2.5 py-1 rounded-full bg-white/5 border border-white/10">3. Confirm</span>
+        </div>
+      </div>
+
+      <div class="mt-4 inline-flex items-center gap-2 rounded-full bg-indigo-500/10 text-indigo-300 px-3 py-1 text-xs font-semibold border border-indigo-500/20">
+        <!-- Subtle crown logo -->
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-3.5 w-3.5">
+          <path class="fill-indigo-400" d="M3 9.5 7.2 12 10 8l2 3 3-4 2.8 4L21 9.5V18c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1V9.5Z"/>
+        </svg>
+        <span>Online Booking</span>
+      </div>
+      <h1 class="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Book your wash</h1>
+      <p class="mt-1 text-slate-400">Category:
+        <span class="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs font-medium text-slate-200 uppercase">
+          <span class="h-2 w-2 rounded-full bg-indigo-400"></span>{{ type() }}
+        </span>
+      </p>
+    </header>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+      <!-- Left: Options + Add-ons + Schedule -->
+      <div class="lg:col-span-2 space-y-8">
+        <!-- Card: Options -->
+        <section class="relative rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-7 shadow-xl shadow-indigo-500/10 backdrop-blur">
+          <div class="pointer-events-none absolute inset-x-6 -top-3 h-6 rounded-full bg-gradient-to-b from-white/20 to-transparent"></div>
+          <h2 class="text-lg font-semibold text-white mb-4">Choose a package</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
+            <ng-container *ngFor="let opt of optionsForType()">
+              <label class="group relative border border-white/10 rounded-2xl p-5 cursor-pointer shadow-sm bg-white/5 hover:bg-white/10 hover:shadow-md transition-all duration-200 focus-within:ring-2 focus-within:ring-indigo-500"
+                     [ngClass]="{ 'ring-2 ring-indigo-500': optionId() === opt.id }">
+                <input class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" type="radio" name="option" [value]="opt.id"
+                       [checked]="optionId() === opt.id" (change)="optionId.set(opt.id)" aria-label="Select {{ opt.name }}" />
+                <div class="flex items-start gap-4">
+                  <div class="mt-1">
+                    <span class="inline-flex items-center justify-center h-5 w-5 rounded-full border border-white/30"
+                          [ngClass]="{ 'bg-indigo-600 border-indigo-600': optionId() === opt.id }"></span>
+                  </div>
+                  <div class="flex-1">
+                    <div class="flex items-center justify-between gap-4">
+                      <h3 class="text-base font-semibold text-white">{{ opt.name }}</h3>
+                      <span class="text-sm font-semibold text-white">R {{ opt.price }}</span>
+                    </div>
+                    <p class="mt-1 text-sm text-slate-300">{{ opt.desc }}</p>
+                  </div>
+                </div>
+              </label>
+            </ng-container>
+          </div>
+        </section>
+
+        <!-- Card: Add-ons -->
+        <section class="relative rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-7 shadow-xl shadow-indigo-500/10 backdrop-blur">
+          <div class="pointer-events-none absolute inset-x-6 -top-3 h-6 rounded-full bg-gradient-to-b from-white/20 to-transparent"></div>
+          <h2 class="text-lg font-semibold text-white mb-4">Add-ons</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label *ngFor="let a of addOnCatalog" class="flex items-center gap-3 rounded-2xl border border-white/10 p-4 hover:bg-white/10 transition">
+              <input type="checkbox" class="h-4 w-4 rounded bg-black/20 border-white/20 text-indigo-500 focus:ring-indigo-500"
+                     [checked]="addOns().includes(a.id)" (change)="toggleAddon(a.id, $any($event.target).checked)" />
+              <span class="text-sm text-white">{{ a.label }}</span>
+              <span class="ml-auto text-sm text-slate-400">+ R {{ a.price }}</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Card: Schedule -->
+        <section class="relative rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-7 shadow-xl shadow-indigo-500/10 backdrop-blur">
+          <div class="pointer-events-none absolute inset-x-6 -top-3 h-6 rounded-full bg-gradient-to-b from-white/20 to-transparent"></div>
+          <h2 class="text-lg font-semibold text-white mb-4">Schedule</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-200 mb-1">Date</label>
+              <input type="date" class="w-full rounded-xl border-white/20 bg-white/10 px-3 py-2.5 text-white placeholder:text-slate-400 shadow-sm ring-1 ring-inset ring-transparent focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30"
+                     [value]="date()" (input)="onDateChange($any($event.target).value)" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-200 mb-1">Time</label>
+              <ng-container *ngIf="slotsLoading(); else timeSelect">
+                <div class="flex items-center gap-2 text-slate-200 text-sm">
+                  <span class="h-4 w-4 border-2 border-t-transparent border-indigo-400 rounded-full animate-spin"></span>
+                  <span>Loading available times...</span>
+                </div>
+              </ng-container>
+              <ng-template #timeSelect>
+                <select
+                  class="w-full rounded-xl border-white/20 bg-white/10 px-3 py-2.5 text-white shadow-sm ring-1 ring-inset ring-transparent focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 bg-black/40"
+                  [value]="time()"
+                  (change)="time.set($any($event.target).value)"
+                >
+                  <option value="" class="text-slate-700">Select a time</option>
+                  <option *ngFor="let slot of availableSlots()" [value]="slot">
+                    {{ slot }}
+                  </option>
+                </select>
+              </ng-template>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right: Summary Card -->
+      <aside class="lg:col-span-1">
+        <div class="sticky top-8 relative rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-7 shadow-xl shadow-indigo-500/10 backdrop-blur">
+          <div class="pointer-events-none absolute inset-x-6 -top-3 h-6 rounded-full bg-gradient-to-b from-white/20 to-transparent"></div>
+          <h3 class="text-base font-semibold text-white">Summary</h3>
+          <dl class="mt-4 space-y-2 text-sm">
+            <div class="flex items-center justify-between">
+              <dt class="text-slate-400">Category</dt>
+              <dd class="text-white uppercase">{{ type() }}</dd>
+            </div>
+            <div class="flex items-center justify-between">
+              <dt class="text-slate-400">Base package</dt>
+              <dd class="text-white">{{ optionId() || '—' }}</dd>
+            </div>
+            <div class="flex items-start justify-between">
+              <dt class="text-slate-400">Add-ons</dt>
+              <dd class="text-right text-white">{{ addOns().length }} selected</dd>
+            </div>
+          </dl>
+          <div class="mt-4 border-t border-white/10 pt-4 flex items-center justify-between">
+            <p class="text-sm text-slate-400">Total</p>
+            <p class="text-2xl font-bold text-white">R {{ total }}</p>
+          </div>
+          <button (click)="submit()" class="mt-6 w-full inline-flex items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-white text-sm font-semibold shadow-lg shadow-indigo-600/20 hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            Continue
+          </button>
+          <p class="mt-3 text-[11px] text-slate-400">Prices may vary based on vehicle condition. You can confirm the final amount at the branch.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
