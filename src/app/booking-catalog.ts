@@ -15,16 +15,23 @@ export interface AddOn {
 
 export const OPTIONS_MAP: Record<WashType, Option[]> = {
   everyday: [
-    { id: 'express', name: 'Express Wash', desc: 'Exterior rinse, foam, dry', price: 120 },
-    { id: 'standard', name: 'Standard Wash', desc: 'Exterior + wheels + windows', price: 150 },
-    { id: 'full', name: 'Full Wash', desc: 'Interior vacuum + wipe-down', price: 220 },
-    { id: 'deep', name: 'Deep Clean', desc: 'Seats, mats, plastics detailed', price: 320 },
+    { id: 'wash-go', name: 'Wash & Go', desc: 'Exterior wash & dry for small vehicles', price: 100 },
+    { id: 'wash-vacuum', name: 'Wash & Vacuum', desc: 'Exterior wash plus interior vacuum', price: 150 },
+    { id: 'interior-only', name: 'Interior Cleanse Only', desc: 'Deep interior vacuum and wipe-down', price: 80 },
+    { id: 'ceramic-spray', name: 'Ceramic Infused Spray', desc: 'Exterior wash with ceramic-infused spray', price: 150 },
+    { id: 'body-gloss', name: 'Body Gloss', desc: 'Gloss-enhancing exterior treatment for small vehicles', price: 120 },
   ],
   'suv-bakkie': [
-    { id: 'express', name: 'Express Wash', desc: 'Exterior rinse, foam, dry', price: 160 },
-    { id: 'standard', name: 'Standard Wash', desc: 'Exterior + wheels + windows', price: 190 },
-    { id: 'full', name: 'Full Wash', desc: 'Interior vacuum + wipe-down', price: 280 },
-    { id: 'deep', name: 'Deep Clean', desc: 'Seats, mats, plastics detailed', price: 380 },
+    { id: 'wash-go-mini', name: 'Wash & Go (Mini Bakkies / Mini SUVs)', desc: 'Exterior wash & dry for mini bakkies and mini SUVs', price: 120 },
+    { id: 'wash-vacuum-mini', name: 'Wash & Vacuum (Mini Bakkies / Mini SUVs)', desc: 'Wash plus interior vacuum for mini bakkies and mini SUVs', price: 170 },
+    { id: 'interior-only-mini', name: 'Interior Cleanse Only (Mini Bakkies / Mini SUVs)', desc: 'Interior-only deep clean for mini bakkies and mini SUVs', price: 100 },
+    { id: 'ceramic-spray-mini', name: 'Ceramic Infused Spray (Mini Bakkies / Mini SUVs)', desc: 'Ceramic-infused spray protection for mini bakkies and mini SUVs', price: 200 },
+    { id: 'body-gloss-mini', name: 'Body Gloss (Mini Bakkies / Mini SUVs)', desc: 'Gloss-enhancing exterior treatment for mini bakkies and mini SUVs', price: 170 },
+    { id: 'wash-go-large', name: 'Wash & Go (Large Bakkies / Large SUVs)', desc: 'Exterior wash & dry for large bakkies and large SUVs', price: 120 },
+    { id: 'wash-vacuum-large', name: 'Wash & Vacuum (Large Bakkies / Large SUVs)', desc: 'Wash plus interior vacuum for large bakkies and large SUVs', price: 200 },
+    { id: 'interior-only-large', name: 'Interior Cleanse Only (Large Bakkies / Large SUVs)', desc: 'Interior-only deep clean for large bakkies and large SUVs', price: 100 },
+    { id: 'ceramic-spray-large', name: 'Ceramic Infused Spray (Large Bakkies / Large SUVs)', desc: 'Ceramic-infused spray protection for large bakkies and large SUVs', price: 250 },
+    { id: 'body-gloss-large', name: 'Body Gloss (Large Bakkies / Large SUVs)', desc: 'Gloss-enhancing exterior treatment for large bakkies and large SUVs', price: 200 },
   ],
   bike: [
     { id: 'express', name: 'Express Rinse', desc: 'Foam + dry', price: 90 },
@@ -40,10 +47,10 @@ export const OPTIONS_MAP: Record<WashType, Option[]> = {
 };
 
 export const ADD_ON_CATALOG: AddOn[] = [
-  { id: 'interior', label: 'Interior Cleans Only – Vacuum, air vents, dashboard shine, door panels', price: 100 },
-  { id: 'leather', label: 'Leather Clean – Nourish & protect leather surfaces', price: 50 },
-  { id: 'ceramic', label: 'Ceramic Infused Spray – Hydrophobic shine & protection', price: 150 },
-  { id: 'headlight', label: 'Headlight Restoration – Restores clarity to headlights', price: 200 },
-  { id: 'bodygloss', label: 'Body Gloss – Enhances depth & glossy finish', price: 100 },
+  { id: 'iron-removal', label: 'Iron Removal on Whole Vehicle & Wheels', price: 180 },
+  { id: 'clay-bar', label: 'Clay Bar Treatment', price: 200 },
+  { id: 'hand-polish-small', label: 'Hand Polish (Small Vehicles)', price: 550 },
+  { id: 'hand-polish-large', label: 'Hand Polish (Large Vehicles)', price: 950 },
+  { id: 'engine-bay-detail', label: 'Engine Bay Detail', price: 180 },
+  { id: 'full-interior-detail', label: 'Full Interior Detail', price: 1200 },
 ];
-
