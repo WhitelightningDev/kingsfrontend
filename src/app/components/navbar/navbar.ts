@@ -8,8 +8,13 @@ import { Component } from '@angular/core';
 })
 export class Navbar {
   isMobileMenuOpen = false;
+  isOtherMenuOpen = false;
 
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  toggleOtherMenu(): void {
+    this.isOtherMenuOpen = !this.isOtherMenuOpen;
   }
 }
