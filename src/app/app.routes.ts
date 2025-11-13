@@ -8,6 +8,8 @@ import { CheckoutComponent } from './pages/checkout/checkout';
 import { Packages } from './pages/packages/packages';
 import { FaqPage } from './pages/faq/faq';
 import { GalleryPage } from './pages/gallery/gallery';
+import { BookingSuccessComponent } from './pages/booking-success/booking-success';
+import { PaymentCanceledComponent } from './pages/payment-canceled/payment-canceled';
 
 export const routes: Routes = [
   {
@@ -27,4 +29,6 @@ export const routes: Routes = [
    { path: 'Book-a-wash/checkout', component: CheckoutComponent },
    { path: 'faq', component: FaqPage },
    { path: 'gallery', component: GalleryPage },
+   { path: 'booking-success', component: BookingSuccessComponent },
+   { path: 'payment-canceled', component: PaymentCanceledComponent },
 ];

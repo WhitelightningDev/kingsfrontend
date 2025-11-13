@@ -1,0 +1,31 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-900 to-black px-4">
+  <div class="relative max-w-md w-full rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl shadow-rose-500/20 backdrop-blur text-center">
+    <div class="pointer-events-none absolute inset-x-6 -top-3 h-6 rounded-full bg-gradient-to-b from-white/20 to-transparent"></div>
+
+    <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-rose-500/10 ring-2 ring-rose-400/40">
+      <svg viewBox="0 0 24 24" class="h-7 w-7 text-rose-400" aria-hidden="true">
+        <path fill="currentColor" d="M12 2a10 10 0 1 1 0 20A10 10 0 0 1 12 2Zm0 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm1-6h-2v5h2V7Z" />
+      </svg>
+    </div>
+
+    <h1 class="text-2xl font-semibold text-white mb-2">
+      Payment cancelled
+    </h1>
+
+    <p class="text-sm text-slate-300 mb-4">
+      Your payment was cancelled. No charges were made. You can try booking again or pay at the branch.
+    </p>
+
+    <div *ngIf="bookingId()" class="mb-4 text-xs text-slate-400">
+      Reference (if created): <span class="font-mono">{{ bookingId() }}</span>
+    </div>
+
+    <a
+      routerLink="/"
+      class="inline-flex items-center justify-center rounded-xl bg-slate-700 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-slate-900/40 hover:bg-slate-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500"
+    >
+      Back to home
+    </a>
+  </div>
+</div>
+

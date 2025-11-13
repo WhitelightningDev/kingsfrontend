@@ -46,10 +46,13 @@ export class ConfirmComponent {
         phone: this.phone(),
         email: this.email(),
         notes: this.notes(),
-      }
+      },
+      fullName: this.fullName(),
+      phone: this.phone(),
+      email: this.email(),
+      notes: this.notes(),
     };
     console.log('CONFIRM_BOOKING', payload);
-    // TODO: call your backend here
-    this.router.navigate(['/Book-a-wash/checkout'], { state: this.state() });
+    this.router.navigate(['/Book-a-wash/checkout'], { state: payload });
   }
 }
