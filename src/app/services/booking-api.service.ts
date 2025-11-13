@@ -44,6 +44,12 @@ export class BookingApiService {
     return this.http.post<BookResponse>(`${API_BASE_URL}/api/book`, payload);
   }
 
+  getAvailableSlots(date: string): Observable<string[]> {
+    return this.http.get<string[]>(`${API_BASE_URL}/api/available-slots`, {
+      params: { date },
+    });
+  }
+
   private mapToBackendPayload(state: CheckoutState) {
     const customer = state.customer ?? {
       fullName: state.fullName,
@@ -88,4 +94,3 @@ export class BookingApiService {
     };
   }
 }
-

@@ -92,12 +92,28 @@
             <div>
               <label class="block text-sm font-medium text-slate-200 mb-1">Date</label>
               <input type="date" class="w-full rounded-xl border-white/20 bg-white/10 px-3 py-2.5 text-white placeholder:text-slate-400 shadow-sm ring-1 ring-inset ring-transparent focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30"
-                     [value]="date()" (input)="date.set($any($event.target).value)" />
+                     [value]="date()" (input)="onDateChange($any($event.target).value)" />
             </div>
             <div>
               <label class="block text-sm font-medium text-slate-200 mb-1">Time</label>
-              <input type="time" class="w-full rounded-xl border-white/20 bg-white/10 px-3 py-2.5 text-white placeholder:text-slate-400 shadow-sm ring-1 ring-inset ring-transparent focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30"
-                     [value]="time()" (input)="time.set($any($event.target).value)" />
+              <ng-container *ngIf="slotsLoading(); else timeSelect">
+                <div class="flex items-center gap-2 text-slate-200 text-sm">
+                  <span class="h-4 w-4 border-2 border-t-transparent border-indigo-400 rounded-full animate-spin"></span>
+                  <span>Loading available times...</span>
+                </div>
+              </ng-container>
+              <ng-template #timeSelect>
+                <select
+                  class="w-full rounded-xl border-white/20 bg-white/10 px-3 py-2.5 text-white shadow-sm ring-1 ring-inset ring-transparent focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 bg-black/40"
+                  [value]="time()"
+                  (change)="time.set($any($event.target).value)"
+                >
+                  <option value="" class="text-slate-700">Select a time</option>
+                  <option *ngFor="let slot of availableSlots()" [value]="slot">
+                    {{ slot }}
+                  </option>
+                </select>
+              </ng-template>
             </div>
           </div>
         </section>

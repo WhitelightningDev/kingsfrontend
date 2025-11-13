@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ADD_ON_CATALOG, OPTIONS_MAP, Option, AddOn, WashType } from '../../booking-catalog';
+import { BookingApiService } from '../../services/booking-api.service';
 
 @Component({
   selector: 'app-book-wash',
@@ -21,12 +22,20 @@ export class BookWash {
   date = signal<string>('');
   time = signal<string>('');
 
+  // Schedule availability
+  availableSlots = signal<string[]>([]);
+  slotsLoading = signal<boolean>(false);
+
   // Catalogs per type
   optionsMap: Record<WashType, Option[]> = OPTIONS_MAP;
 
   addOnCatalog: AddOn[] = ADD_ON_CATALOG;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private bookingApi: BookingApiService,
+  ) {
     const qp = this.route.snapshot.queryParamMap.get('type') as WashType | null;
     if (qp && ['everyday', 'suv-bakkie', 'bike', 'luxury'].includes(qp)) {
       this.type.set(qp);
@@ -51,6 +60,32 @@ export class BookWash {
       .filter(a => this.addOns().includes(a.id))
       .reduce((sum, a) => sum + a.price, 0);
     return base + extras;
+  }
+
+  onDateChange(value: string) {
+    this.date.set(value);
+    this.time.set('');
+
+    if (!value) {
+      this.availableSlots.set([]);
+      return;
+    }
+
+    this.slotsLoading.set(true);
+    this.bookingApi.getAvailableSlots(value).subscribe({
+      next: (slots) => {
+        this.availableSlots.set(slots || []);
+        this.time.set('');
+      },
+      error: () => {
+        this.availableSlots.set([]);
+        this.time.set('');
+        alert('Error fetching available slots. Please try again.');
+      },
+      complete: () => {
+        this.slotsLoading.set(false);
+      },
+    });
   }
 
   submit() {
