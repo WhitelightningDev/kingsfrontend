@@ -11,6 +11,8 @@ export interface CheckoutState {
   date: string;
   time: string;
   amount: number;
+  vehicle?: string;
+  address?: string;
   fullName?: string;
   phone?: string;
   email?: string;
@@ -71,7 +73,7 @@ export class BookingApiService {
     return {
       firstName: firstName || '',
       lastName: lastName || '',
-      carModel: '',
+      carModel: state.vehicle ?? '',
       washType: selectedOption
         ? {
             name: selectedOption.name,
@@ -88,7 +90,7 @@ export class BookingApiService {
       email: customer.email,
       subscription: 'No Subscription',
       serviceLocation: 'Branch',
-      address: '',
+      address: state.address ?? '',
       totalPrice: state.amount,
       payment: state.payment,
     };

@@ -18,6 +18,8 @@ export class ConfirmComponent {
   phone = signal<string>('');
   email = signal<string>('');
   notes = signal<string>('');
+  vehicle = signal<string>('');
+  address = signal<string>('');
 
   constructor(private router: Router) {
     // Prefer Router state; fallback to history.state if user navigates directly
@@ -31,6 +33,8 @@ export class ConfirmComponent {
       this.phone.set(s.phone ?? s.customer?.phone ?? '');
       this.email.set(s.email ?? s.customer?.email ?? '');
       this.notes.set(s.notes ?? s.customer?.notes ?? '');
+      this.vehicle.set(s.vehicle ?? '');
+      this.address.set(s.address ?? '');
     }
   }
 
@@ -51,6 +55,8 @@ export class ConfirmComponent {
       phone: this.phone(),
       email: this.email(),
       notes: this.notes(),
+      vehicle: this.vehicle(),
+      address: this.address(),
     };
     console.log('CONFIRM_BOOKING', payload);
     this.router.navigate(['/Book-a-wash/checkout'], { state: payload });

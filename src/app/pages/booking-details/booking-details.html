@@ -46,6 +46,26 @@
           />
         </div>
 
+        <!-- Vehicle type / model -->
+        <div class="md:col-span-2">
+          <label class="block text-sm font-semibold text-slate-800 mb-1">Vehicle type / model</label>
+          <input
+            class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-transparent placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+            [ngModel]="vehicle()" (ngModelChange)="vehicle.set($event)" name="vehicle" required
+            placeholder="e.g. BMW X5, VW Polo, Toyota Hilux"
+          />
+        </div>
+
+        <!-- Service address -->
+        <div class="md:col-span-2">
+          <label class="block text-sm font-semibold text-slate-800 mb-1">Service address</label>
+          <textarea
+            class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-transparent placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+            rows="3" [ngModel]="address()" (ngModelChange)="address.set($event)" name="address" required
+            placeholder="Street, complex, suburb, any access instructions…"
+          ></textarea>
+        </div>
+
         <!-- Notes -->
         <div class="md:col-span-2">
           <div class="flex items-center justify-between">

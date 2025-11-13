@@ -91,6 +91,38 @@
             </div>
           </section>
 
+          <!-- Vehicle & address -->
+          <section>
+            <h2 class="text-lg font-semibold text-slate-900">Vehicle & address</h2>
+            <p class="text-sm text-slate-500">Tell us which vehicle we’re treating and where to meet you.</p>
+            <div class="mt-4 space-y-4">
+              <div>
+                <label class="block text-sm font-semibold text-slate-800 mb-1">Vehicle type / model</label>
+                <input
+                  type="text"
+                  class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 placeholder:text-slate-400 shadow-sm ring-1 ring-inset ring-transparent focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+                  [ngModel]="vehicle()"
+                  (ngModelChange)="vehicle.set($event)"
+                  name="vehicle"
+                  required
+                  placeholder="e.g. BMW X5, VW Polo, Toyota Hilux"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-slate-800 mb-1">Service address</label>
+                <textarea
+                  rows="3"
+                  class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 placeholder:text-slate-400 shadow-sm ring-1 ring-inset ring-transparent focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/40"
+                  [ngModel]="address()"
+                  (ngModelChange)="address.set($event)"
+                  name="address"
+                  required
+                  placeholder="Street, complex, suburb, any access instructions…"
+                ></textarea>
+              </div>
+            </div>
+          </section>
+
           <!-- Notes -->
           <section>
             <div class="flex items-center justify-between">
@@ -156,6 +188,14 @@
             <div class="flex items-center justify-between">
               <dt class="text-slate-600">Time</dt>
               <dd class="text-slate-900">{{ state()?.time || '—' }}</dd>
+            </div>
+            <div class="flex items-center justify-between">
+              <dt class="text-slate-600">Vehicle</dt>
+              <dd class="text-slate-900">{{ vehicle() || '—' }}</dd>
+            </div>
+            <div class="flex items-start justify-between">
+              <dt class="text-slate-600">Address</dt>
+              <dd class="text-right text-slate-900 max-w-[60%] text-ellipsis overflow-hidden">{{ address() || '—' }}</dd>
             </div>
             <div class="flex items-center justify-between">
               <dt class="text-slate-600">Full name</dt>
